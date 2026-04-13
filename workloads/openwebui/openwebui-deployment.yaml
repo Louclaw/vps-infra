@@ -33,18 +33,11 @@ spec:
               value: "false"
             - name: DEFAULT_USER_ROLE
               value: "pending"
-            - name: DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: openwebui-db-secret
-                  key: username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: openwebui-db-secret
-                  key: password
             - name: DATABASE_URL
-              value: "postgresql://$(DB_USERNAME):$(DB_PASSWORD)@postgres-cluster-rw.cnpg-system.svc.cluster.local:5432/openwebui"
+              valueFrom:
+                secretKeyRef:
+                  name: openwebui-db-secret
+                  key: DATABASE_URL
           envFrom:
             - secretRef:
                 name: openwebui-secret
